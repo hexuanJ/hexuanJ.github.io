@@ -161,125 +161,260 @@
         </div>
         <!----sreen-gallery-cursual---->
         <div class="sreen-gallery-cursual">
-            <!-- 使用Owl Carousel实现轮播图 -->
-            <div id="owl-demo" class="owl-carousel">
-                <!-- 第一张照片 -->
-                <div class="item">
-                    <img class="lazyOwl" data-src="images/photo1.jpg" alt="我们的第一张合照">
-                    <div class="caption">我们的第一张合照 - 2024年5月</div>
+            <!-- 轮播图容器 -->
+            <div class="slider-container">
+                <div class="slides-wrapper">
+                    <!-- 第一张照片 -->
+                    <div class="slide active">
+                        <img src="images/photo1.jpg" alt="我们的第一张合照">
+                        <div class="slide-caption">
+                            <h3>我们的第一张合照</h3>
+                            <p>2024年5月</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 第二张照片 -->
+                    <div class="slide">
+                        <img src="images/photo2.jpg" alt="一起旅行的美好时光">
+                        <div class="slide-caption">
+                            <h3>一起旅行的美好时光</h3>
+                            <p>难忘的旅程</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 第三张照片 -->
+                    <div class="slide">
+                        <img src="images/photo3.jpg" alt="平凡的日常">
+                        <div class="slide-caption">
+                            <h3>平凡的日常</h3>
+                            <p>不平凡的记忆</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 第四张照片 -->
+                    <div class="slide">
+                        <img src="images/photo4.jpg" alt="特别的瞬间">
+                        <div class="slide-caption">
+                            <h3>那些特别的瞬间</h3>
+                            <p>永远珍藏</p>
+                        </div>
+                    </div>
                 </div>
-                <!-- 第二张照片 -->
-                <div class="item">
-                    <img class="lazyOwl" data-src="images/photo2.jpg" alt="一起旅行的美好时光">
-                    <div class="caption">一起旅行的美好时光</div>
-                </div>
-                <!-- 第三张照片 -->
-                <div class="item">
-                    <img class="lazyOwl" data-src="images/photo3.jpg" alt="平凡的日常">
-                    <div class="caption">平凡的日常，不平凡的记忆</div>
-                </div>
-                <!-- 第四张照片 -->
-                <div class="item">
-                    <img class="lazyOwl" data-src="images/photo4.jpg" alt="特别的瞬间">
-                    <div class="caption">那些特别的瞬间</div>
+                
+                <!-- 导航箭头 -->
+                <button class="nav-btn prev-btn">&#10094;</button>
+                <button class="nav-btn next-btn">&#10095;</button>
+                
+                <!-- 指示点 -->
+                <div class="dots-container">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
                 </div>
             </div>
             
-            <!-- Owl Carousel 配置 -->
-            <script>
-                $(document).ready(function() {
-                    $("#owl-demo").owlCarousel({
-                        items: 1, // 每次显示一张图片
-                        lazyLoad: true, // 启用懒加载
-                        autoPlay: true, // 自动播放
-                        navigation: true, // 显示导航箭头
-                        navigationText: ["❮", "❯"], // 箭头文本
-                        pagination: true, // 显示分页点
-                        singleItem: true, // 单项目模式
-                        transitionStyle: "fade" // 淡入淡出效果
-                    });
-                });
-            </script>
-            
-            <!-- 自定义样式 -->
             <style>
-                /* 确保轮播图容器样式 */
-                .owl-carousel {
+                /* 轮播图样式 */
+                .slider-container {
                     position: relative;
-                    margin: 20px 0;
+                    max-width: 800px;
+                    margin: 30px auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                 }
                 
-                .owl-carousel .item {
-                    position: relative;
-                    text-align: center;
+                .slides-wrapper {
+                    display: flex;
+                    transition: transform 0.5s ease;
                 }
                 
-                .owl-carousel .item img {
+                .slide {
+                    min-width: 100%;
+                    position: relative;
+                }
+                
+                .slide img {
                     width: 100%;
-                    height: 400px;
+                    height: 450px;
                     object-fit: cover;
-                    border-radius: 8px;
+                    display: block;
                 }
                 
-                /* 图片描述样式 */
-                .caption {
+                .slide-caption {
                     position: absolute;
                     bottom: 0;
                     left: 0;
                     right: 0;
-                    background: rgba(0,0,0,0.6);
+                    background: linear-gradient(transparent, rgba(0,0,0,0.7));
                     color: white;
-                    padding: 15px;
+                    padding: 20px;
                     text-align: center;
-                    font-size: 16px;
-                    border-bottom-left-radius: 8px;
-                    border-bottom-right-radius: 8px;
                 }
                 
-                /* 导航箭头样式 */
-                .owl-prev, .owl-next {
+                .slide-caption h3 {
+                    margin: 0 0 5px 0;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+                
+                .slide-caption p {
+                    margin: 0;
+                    font-size: 16px;
+                    opacity: 0.9;
+                }
+                
+                .nav-btn {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    background: rgba(0,0,0,0.5) !important;
-                    color: white !important;
-                    width: 40px;
-                    height: 40px;
+                    background: rgba(0,0,0,0.5);
+                    color: white;
+                    border: none;
+                    width: 50px;
+                    height: 50px;
                     border-radius: 50%;
                     font-size: 24px;
-                    line-height: 35px;
-                    transition: background 0.3s;
+                    cursor: pointer;
+                    z-index: 10;
+                    transition: all 0.3s ease;
                 }
                 
-                .owl-prev:hover, .owl-next:hover {
-                    background: rgba(0,0,0,0.8) !important;
+                .nav-btn:hover {
+                    background: rgba(0,0,0,0.8);
                 }
                 
-                .owl-prev {
-                    left: 15px;
+                .prev-btn {
+                    left: 20px;
                 }
                 
-                .owl-next {
-                    right: 15px;
+                .next-btn {
+                    right: 20px;
                 }
                 
-                /* 分页点样式 */
-                .owl-pagination {
+                .dots-container {
                     position: absolute;
                     bottom: 20px;
                     left: 0;
                     right: 0;
-                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    z-index: 10;
                 }
                 
-                .owl-page span {
-                    background: rgba(255,255,255,0.5) !important;
+                .dot {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.5);
+                    cursor: pointer;
+                    transition: background 0.3s;
                 }
                 
-                .owl-page.active span {
-                    background: white !important;
+                .dot.active {
+                    background: white;
+                }
+                
+                .dot:hover {
+                    background: rgba(255,255,255,0.8);
+                }
+                
+                /* 响应式设计 */
+                @media (max-width: 768px) {
+                    .slide img {
+                        height: 350px;
+                    }
+                    
+                    .nav-btn {
+                        width: 40px;
+                        height: 40px;
+                        font-size: 20px;
+                    }
+                    
+                    .slide-caption h3 {
+                        font-size: 20px;
+                    }
+                    
+                    .slide-caption p {
+                        font-size: 14px;
+                    }
                 }
             </style>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const slides = document.querySelectorAll('.slide');
+                    const dots = document.querySelectorAll('.dot');
+                    const prevBtn = document.querySelector('.prev-btn');
+                    const nextBtn = document.querySelector('.next-btn');
+                    let currentIndex = 0;
+                    
+                    // 显示指定幻灯片
+                    function showSlide(index) {
+                        // 确保索引在有效范围内
+                        if (index < 0) {
+                            index = slides.length - 1;
+                        } else if (index >= slides.length) {
+                            index = 0;
+                        }
+                        
+                        // 隐藏所有幻灯片
+                        slides.forEach(slide => slide.classList.remove('active'));
+                        dots.forEach(dot => dot.classList.remove('active'));
+                        
+                        // 显示当前幻灯片
+                        slides[index].classList.add('active');
+                        dots[index].classList.add('active');
+                        currentIndex = index;
+                    }
+                    
+                    // 下一张
+                    nextBtn.addEventListener('click', () => {
+                        showSlide(currentIndex + 1);
+                    });
+                    
+                    // 上一张
+                    prevBtn.addEventListener('click', () => {
+                        showSlide(currentIndex - 1);
+                    });
+                    
+                    // 点击指示点切换
+                    dots.forEach(dot => {
+                        dot.addEventListener('click', function() {
+                            const index = parseInt(this.getAttribute('data-index'));
+                            showSlide(index);
+                        });
+                    });
+                    
+                    // 自动轮播
+                    let slideInterval = setInterval(() => {
+                        showSlide(currentIndex + 1);
+                    }, 5000);
+                    
+                    // 鼠标悬停时暂停自动轮播
+                    const sliderContainer = document.querySelector('.slider-container');
+                    sliderContainer.addEventListener('mouseenter', () => {
+                        clearInterval(slideInterval);
+                    });
+                    
+                    sliderContainer.addEventListener('mouseleave', () => {
+                        slideInterval = setInterval(() => {
+                            showSlide(currentIndex + 1);
+                        }, 5000);
+                    });
+                    
+                    // 键盘导航
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'ArrowLeft') {
+                            showSlide(currentIndex - 1);
+                        } else if (e.key === 'ArrowRight') {
+                            showSlide(currentIndex + 1);
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 </div>
