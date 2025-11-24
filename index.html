@@ -7,6 +7,8 @@
 		<script src="js/jquery.min.js"></script>
 		 <!-- Custom Theme files -->
 		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<!-- 新增：Font Awesome图标库 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 		<link rel="shortcut icon" href="images/fav-icon.png" />	
    		 <!-- Custom Theme files -->
    		  <!---- start-smoth-scrolling---->
@@ -252,7 +254,102 @@
             object-fit: cover;
             display: block;
         }
-        
+        /* 新增：音乐播放器样式 */
+.music-player {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(212, 165, 165, 0.9);
+    border-radius: 50px;
+    padding: 10px 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid #8b4513;
+}
+
+.music-player:hover {
+    background: rgba(212, 165, 165, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.music-icon {
+    width: 40px;
+    height: 40px;
+    background: #8b4513;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.music-icon:hover {
+    background: #a05252;
+    transform: scale(1.1);
+}
+
+.music-icon.playing {
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0;
+    width: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.music-player:hover .volume-control {
+    opacity: 1;
+    width: 100px;
+}
+
+.volume-slider {
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #8b4513;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .music-player {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+    }
+    
+    .music-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
         .slide-caption {
             position: absolute;
             bottom: 0;
@@ -588,28 +685,34 @@
 		</div>
 		<!---//copy-right--->
 	
-    <!-- 音乐播放器JavaScript - 新增部分 -->
     <script>
-        $(document).ready(function() {
-            const musicControl = $('#musicControl');
-            const musicIcon = $('#musicIcon');
-            const bgMusic = $('#bgMusic')[0]; // 获取原生的audio元素
+        // 音乐播放控制
+        document.addEventListener('DOMContentLoaded', function() {
+            const musicControl = document.getElementById('musicControl');
+            const musicIcon = document.getElementById('musicIcon');
+            const bgMusic = document.getElementById('bgMusic');
+            const volumeSlider = document.getElementById('volumeSlider');
             
             let isPlaying = false;
             
+            // 设置初始音量
+            bgMusic.volume = volumeSlider.value;
+            
             // 点击音乐图标控制播放/暂停
-            musicControl.on('click', function() {
+            musicControl.addEventListener('click', function() {
                 if (isPlaying) {
                     // 暂停音乐
                     bgMusic.pause();
-                    musicControl.removeClass('playing');
-                    musicIcon.removeClass('fa-pause').addClass('fa-music');
+                    musicControl.classList.remove('playing');
+                    musicIcon.classList.remove('fa-pause');
+                    musicIcon.classList.add('fa-music');
                     isPlaying = false;
                 } else {
                     // 播放音乐
                     bgMusic.play().then(() => {
-                        musicControl.addClass('playing');
-                        musicIcon.removeClass('fa-music').addClass('fa-pause');
+                        musicControl.classList.add('playing');
+                        musicIcon.classList.remove('fa-music');
+                        musicIcon.classList.add('fa-pause');
                         isPlaying = true;
                     }).catch(error => {
                         console.log("播放失败:", error);
@@ -617,6 +720,11 @@
                         alert("请点击音乐图标开始播放");
                     });
                 }
+            });
+            
+            // 音量控制
+            volumeSlider.addEventListener('input', function() {
+                bgMusic.volume = volumeSlider.value;
             });
             
             // 音乐结束时的处理（循环播放）
@@ -627,7 +735,7 @@
             // 处理音频加载错误
             bgMusic.addEventListener('error', function() {
                 console.error("音频加载错误，请检查文件路径");
-                musicControl.hide(); // 隐藏音乐控件如果音频加载失败
+                musicControl.style.display = 'none'; // 隐藏音乐控件如果音频加载失败
             });
         });
     </script>
