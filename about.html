@@ -70,10 +70,9 @@
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
         }
         
         .event-card:hover {
@@ -81,29 +80,8 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
-        .event-image {
-            height: 250px;
-            overflow: hidden;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .event-card:hover .event-image img {
-            transform: scale(1.05);
-        }
-        
-        .event-content {
-            padding: 25px;
+        .event-header {
+            padding: 25px 25px 0;
         }
         
         .event-date {
@@ -120,15 +98,58 @@
         }
         
         .event-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 15px;
             color: var(--primary-color);
             font-weight: 600;
         }
         
+        /* 照片容器 - 使用Flexbox布局 */
+        .photo-gallery {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 0 25px;
+        }
+        
+        /* 单个照片样式 */
+        .photo-item {
+            flex: 1;
+            min-width: 0; /* 防止图片溢出 */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .photo-caption {
+            padding: 10px;
+            background: #f8f9fa;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .event-content {
+            padding: 0 25px 25px;
+        }
+        
         .event-description {
             color: #555;
             margin-bottom: 15px;
+            line-height: 1.8;
         }
         
         .read-more {
@@ -190,7 +211,15 @@
         }
         
         @media (max-width: 768px) {
-            .event-image {
+            .photo-gallery {
+                flex-direction: column;
+            }
+            
+            .photo-item {
+                margin-bottom: 15px;
+            }
+            
+            .photo-item img {
                 height: 200px;
             }
             
@@ -206,7 +235,7 @@
     </style>
 </head>
 <body>
-    <!-- 头部导航 - 替换原header部分 -->
+    <!-- 头部导航 -->
     <div class="header">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
@@ -226,7 +255,7 @@
         </div>
     </div>
 
-    <!-- 页面标题 - 替换原top-heade部分 -->
+    <!-- 页面标题 -->
     <div class="page-title">
         <div class="container">
             <div class="row align-items-center">
@@ -246,128 +275,210 @@
         </div>
     </div>
 
-    <!-- 事件展示部分 - 替换原about-grids部分 -->
+    <!-- 事件展示部分 -->
     <div class="events-section">
         <div class="container">
-            <div class="row">
-                <!-- 事件1 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="event-card">
-                        <div class="event-image">
-                            <!-- 照片插入位置1 -->
-                            
-                        </div>
-                        <div class="event-content">
-                            <div class="event-date">
-                                <i class="far fa-calendar-alt"></i> 2023年5月15日
-                            </div>
-                            <!-- 事件名称位置1 -->
-                            <h3 class="event-title">年度产品发布会</h3>
-                            <p class="event-description">我们成功举办了年度产品发布会，展示了公司最新的创新成果。活动吸引了超过500名行业专家和媒体代表参加，获得了广泛好评。</p>
-                            <a href="#" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
-                        </div>
+            <!-- 事件1：年度产品发布会 -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <i class="far fa-calendar-alt"></i> 2023年5月15日
+                    </div>
+                    <h3 class="event-title">年度产品发布会</h3>
+                </div>
+                
+                <div class="photo-gallery">
+                    <!-- 照片1 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">发布会主会场</div>
+                    </div>
+                    <!-- 照片2 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">新产品演示</div>
+                    </div>
+                    <!-- 照片3 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">现场交流</div>
                     </div>
                 </div>
                 
-                <!-- 事件2 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="event-card">
-                        <div class="event-image">
-                            <!-- 照片插入位置2 -->
-                            
-                        </div>
-                        <div class="event-content">
-                            <div class="event-date">
-                                <i class="far fa-calendar-alt"></i> 2023年7月22日
-                            </div>
-                            <!-- 事件名称位置2 -->
-                            <h3 class="event-title">团队建设活动</h3>
-                            <p class="event-description">在美丽的山区举行了为期三天的团队建设活动，增强了团队凝聚力，促进了跨部门合作，提升了员工的工作积极性。</p>
-                            <a href="#" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                <div class="event-content">
+                    <p class="event-description">我们成功举办了年度产品发布会，展示了公司最新的创新成果。活动吸引了超过500名行业专家和媒体代表参加，获得了广泛好评。发布会现场气氛热烈，新产品展示环节备受关注。</p>
+                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- 事件2：团队建设活动 -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <i class="far fa-calendar-alt"></i> 2023年7月22日
+                    </div>
+                    <h3 class="event-title">团队建设活动</h3>
+                </div>
+                
+                <div class="photo-gallery">
+                    <!-- 照片1 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">团队合影</div>
+                    </div>
+                    <!-- 照片2 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">团队协作</div>
+                    </div>
+                    <!-- 照片3 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">庆祝晚会</div>
                     </div>
                 </div>
                 
-                <!-- 事件3 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="event-card">
-                        <div class="event-image">
-                            <!-- 照片插入位置3 -->
-                            
-                        </div>
-                        <div class="event-content">
-                            <div class="event-date">
-                                <i class="far fa-calendar-alt"></i> 2023年9月10日
-                            </div>
-                            <!-- 事件名称位置3 -->
-                            <h3 class="event-title">社区慈善活动</h3>
-                            <p class="event-description">我们组织了大型社区慈善活动，为当地儿童医院筹集了超过10万元善款，体现了企业的社会责任感，赢得了社区的高度赞誉。</p>
-                            <a href="#" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                <div class="event-content">
+                    <p class="event-description">在美丽的山区举行了为期三天的团队建设活动，增强了团队凝聚力，促进了跨部门合作，提升了员工的工作积极性。通过各种团队游戏和挑战，同事们建立了更深厚的信任关系。</p>
+                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- 事件3：社区慈善活动 -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <i class="far fa-calendar-alt"></i> 2023年9月10日
+                    </div>
+                    <h3 class="event-title">社区慈善活动</h3>
+                </div>
+                
+                <div class="photo-gallery">
+                    <!-- 照片1 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">活动主会场</div>
+                    </div>
+                    <!-- 照片2 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">善款捐赠</div>
+                    </div>
+                    <!-- 照片3 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">志愿者团队</div>
                     </div>
                 </div>
                 
-                <!-- 事件4 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="event-card">
-                        <div class="event-image">
-                            <!-- 照片插入位置4 -->
-                            
-                        </div>
-                        <div class="event-content">
-                            <div class="event-date">
-                                <i class="far fa-calendar-alt"></i> 2023年10月5日
-                            </div>
-                            <!-- 事件名称位置4 -->
-                            <h3 class="event-title">行业技术峰会</h3>
-                            <p class="event-description">作为主办方，我们成功举办了年度行业技术峰会，汇集了国内外顶尖专家，探讨了行业未来发展趋势，推动了技术创新。</p>
-                            <a href="#" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                <div class="event-content">
+                    <p class="event-description">我们组织了大型社区慈善活动，为当地儿童医院筹集了超过10万元善款，体现了企业的社会责任感，赢得了社区的高度赞誉。活动当天有超过200名员工参与志愿服务。</p>
+                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- 事件4：行业技术峰会 -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <i class="far fa-calendar-alt"></i> 2023年10月5日
+                    </div>
+                    <h3 class="event-title">行业技术峰会</h3>
+                </div>
+                
+                <div class="photo-gallery">
+                    <!-- 照片1 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">开幕式现场</div>
+                    </div>
+                    <!-- 照片2 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">专家分享</div>
+                    </div>
+                    <!-- 照片3 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">行业对话</div>
                     </div>
                 </div>
                 
-                <!-- 事件5 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="event-card">
-                        <div class="event-image">
-                            <!-- 照片插入位置5 -->
-                            
-                        </div>
-                        <div class="event-content">
-                            <div class="event-date">
-                                <i class="far fa-calendar-alt"></i> 2023年12月20日
-                            </div>
-                            <!-- 事件名称位置5 -->
-                            <h3 class="event-title">公司年度庆典</h3>
-                            <p class="event-description">在豪华酒店举办了盛大的年度庆典，表彰了优秀员工，回顾了一年的成就，并展望了未来的发展，增强了员工的归属感。</p>
-                            <a href="#" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                <div class="event-content">
+                    <p class="event-description">作为主办方，我们成功举办了年度行业技术峰会，汇集了国内外顶尖专家，探讨了行业未来发展趋势，推动了技术创新。峰会吸引了超过1000名专业人士参与。</p>
+                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- 事件5：公司年度庆典 -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <i class="far fa-calendar-alt"></i> 2023年12月20日
+                    </div>
+                    <h3 class="event-title">公司年度庆典</h3>
+                </div>
+                
+                <div class="photo-gallery">
+                    <!-- 照片1 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">庆典主会场</div>
+                    </div>
+                    <!-- 照片2 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">优秀员工表彰</div>
+                    </div>
+                    <!-- 照片3 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">文艺表演</div>
                     </div>
                 </div>
                 
-                <!-- 事件6 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="event-card">
-                        <div class="event-image">
-                            <!-- 照片插入位置6 -->
-                            
-                        </div>
-                        <div class="event-content">
-                            <div class="event-date">
-                                <i class="far fa-calendar-alt"></i> 2024年1月15日
-                            </div>
-                            <!-- 事件名称位置6 -->
-                            <h3 class="event-title">全球合作伙伴会议</h3>
-                            <p class="event-description">我们邀请了来自全球的合作伙伴，共同探讨市场机遇，深化合作关系，制定新一年的合作战略，为未来的发展奠定了基础。</p>
-                            <a href="#" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                <div class="event-content">
+                    <p class="event-description">在豪华酒店举办了盛大的年度庆典，表彰了优秀员工，回顾了一年的成就，并展望了未来的发展，增强了员工的归属感。庆典现场气氛热烈，节目精彩纷呈。</p>
+                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- 事件6：全球合作伙伴会议 -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <i class="far fa-calendar-alt"></i> 2024年1月15日
                     </div>
+                    <h3 class="event-title">全球合作伙伴会议</h3>
+                </div>
+                
+                <div class="photo-gallery">
+                    <!-- 照片1 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">主会场</div>
+                    </div>
+                    <!-- 照片2 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">合作协议签署</div>
+                    </div>
+                    <!-- 照片3 -->
+                    <div class="photo-item">
+                        
+                        <div class="photo-caption">全体合影</div>
+                    </div>
+                </div>
+                
+                <div class="event-content">
+                    <p class="event-description">我们邀请了来自全球的合作伙伴，共同探讨市场机遇，深化合作关系，制定新一年的合作战略，为未来的发展奠定了基础。会议取得了丰硕成果。</p>
+                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 页脚 - 替换原copy-right部分 -->
+    <!-- 页脚 -->
     <div class="footer">
         <div class="container text-center">
             <p>&copy; 2024 点点滴滴. 保留所有权利.</p>
