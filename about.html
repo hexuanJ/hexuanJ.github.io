@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4a6ee0;
-            --secondary-color: #6c757d;
-            --accent-color: #ff7e5f;
-            --light-bg: #f8f9fa;
-            --dark-text: #343a40;
+            --primary-yellow: #ffcc00;     /* 首页顶部横幅的黄色 */
+            --primary-dark: #8b4513;        /* 首页标题的深褐色 */
+            --primary-pink: #dda0dd;       /* 首页底部的淡紫色 */
+            --light-bg: #f9f5f0;           /* 首页中部的浅米色背景 */
+            --accent-color: #a0522d;        /* 首页按钮的褐色 */
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--dark-text);
+            color: #333;
             background-color: var(--light-bg);
             line-height: 1.6;
         }
         
         .header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5cc5 100%);
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, #e6b800 100%);
             color: white;
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -53,13 +53,26 @@
         }
         
         .top-nav a:hover {
-            color: #ffd700;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7);
         }
         
         .page-title {
-            background-color: #e9ecef;
+            background-color: var(--light-bg);
             padding: 30px 0;
             margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .page-title h1 {
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-title p {
+            color: #a05252;
+            font-size: 1.2rem;
         }
         
         .events-section {
@@ -73,6 +86,7 @@
             margin-bottom: 40px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid var(--primary-yellow);
         }
         
         .event-card:hover {
@@ -82,10 +96,11 @@
         
         .event-header {
             padding: 25px 25px 0;
+            background: linear-gradient(to right, rgba(255,204,0,0.1), transparent);
         }
         
         .event-date {
-            color: var(--secondary-color);
+            color: var(--accent-color);
             font-size: 0.9rem;
             margin-bottom: 10px;
             display: flex;
@@ -94,13 +109,13 @@
         
         .event-date i {
             margin-right: 8px;
-            color: var(--accent-color);
+            color: var(--primary-yellow);
         }
         
         .event-title {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: var(--primary-color);
+            color: var(--primary-dark);
             font-weight: 600;
         }
         
@@ -121,10 +136,12 @@
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            border: 2px solid var(--primary-yellow);
         }
         
         .photo-item:hover {
             transform: translateY(-5px);
+            border-color: var(--primary-dark);
         }
         
         .photo-item img {
@@ -138,8 +155,9 @@
             padding: 10px;
             background: #f8f9fa;
             font-size: 0.9rem;
-            color: var(--secondary-color);
+            color: var(--accent-color);
             text-align: center;
+            border-top: 1px solid #eee;
         }
         
         .event-content {
@@ -153,41 +171,37 @@
         }
         
         .read-more {
-            color: var(--primary-color);
+            display: inline-block;
+            background-color: var(--primary-yellow);
+            color: var(--primary-dark);
             text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 4px;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
             transition: all 0.3s;
+            border: 1px solid var(--primary-yellow);
         }
         
         .read-more:hover {
-            color: var(--accent-color);
+            background-color: var(--primary-dark);
+            color: white;
             transform: translateX(5px);
         }
         
-        .read-more i {
-            margin-left: 5px;
-            transition: transform 0.3s;
-        }
-        
-        .read-more:hover i {
-            transform: translateX(3px);
-        }
-        
         .footer {
-            background-color: #343a40;
-            color: white;
+            background-color: var(--primary-pink);
+            color: var(--primary-dark);
             padding: 30px 0;
             margin-top: 50px;
+            text-align: center;
         }
         
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--primary-color);
-            color: white;
+            background: var(--primary-yellow);
+            color: var(--primary-dark);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -199,6 +213,7 @@
             transition: all 0.3s;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border: 1px solid var(--primary-dark);
         }
         
         .back-to-top.visible {
@@ -206,7 +221,8 @@
         }
         
         .back-to-top:hover {
-            background: var(--accent-color);
+            background: var(--primary-dark);
+            color: white;
             transform: translateY(-3px);
         }
         
@@ -230,6 +246,10 @@
             
             .top-nav li {
                 margin: 5px 0;
+            }
+            
+            .page-title h1 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -258,20 +278,8 @@
     <!-- 页面标题 -->
     <div class="page-title">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h1>重要事件回顾</h1>
-                    <p class="lead mb-0">记录我们一起走过的精彩时刻</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-md-end">
-                            <li class="breadcrumb-item"><a href="index.html">首页</a></li>
-                            <li class="breadcrumb-item active">事件回顾</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
+            <h1>重要事件回顾</h1>
+            <p>记录我们一起走过的精彩时刻</p>
         </div>
     </div>
 
@@ -290,24 +298,24 @@
                 <div class="photo-gallery">
                     <!-- 照片1 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="发布会现场全景">
                         <div class="photo-caption">发布会主会场</div>
                     </div>
                     <!-- 照片2 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1551135049-8e33f2fbf4a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="产品展示环节">
                         <div class="photo-caption">新产品演示</div>
                     </div>
                     <!-- 照片3 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="嘉宾互动">
                         <div class="photo-caption">现场交流</div>
                     </div>
                 </div>
                 
                 <div class="event-content">
                     <p class="event-description">我们成功举办了年度产品发布会，展示了公司最新的创新成果。活动吸引了超过500名行业专家和媒体代表参加，获得了广泛好评。发布会现场气氛热烈，新产品展示环节备受关注。</p>
-                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more">了解更多详情</a>
                 </div>
             </div>
             
@@ -323,24 +331,24 @@
                 <div class="photo-gallery">
                     <!-- 照片1 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="团队活动集体照">
                         <div class="photo-caption">团队合影</div>
                     </div>
                     <!-- 照片2 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="户外拓展活动">
                         <div class="photo-caption">团队协作</div>
                     </div>
                     <!-- 照片3 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" alt="晚会活动">
                         <div class="photo-caption">庆祝晚会</div>
                     </div>
                 </div>
                 
                 <div class="event-content">
                     <p class="event-description">在美丽的山区举行了为期三天的团队建设活动，增强了团队凝聚力，促进了跨部门合作，提升了员工的工作积极性。通过各种团队游戏和挑战，同事们建立了更深厚的信任关系。</p>
-                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more">了解更多详情</a>
                 </div>
             </div>
             
@@ -356,24 +364,24 @@
                 <div class="photo-gallery">
                     <!-- 照片1 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="活动主会场">
                         <div class="photo-caption">活动主会场</div>
                     </div>
                     <!-- 照片2 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="善款捐赠">
                         <div class="photo-caption">善款捐赠</div>
                     </div>
                     <!-- 照片3 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1558402529-5d58da4f9d05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="志愿者团队">
                         <div class="photo-caption">志愿者团队</div>
                     </div>
                 </div>
                 
                 <div class="event-content">
                     <p class="event-description">我们组织了大型社区慈善活动，为当地儿童医院筹集了超过10万元善款，体现了企业的社会责任感，赢得了社区的高度赞誉。活动当天有超过200名员工参与志愿服务。</p>
-                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more">了解更多详情</a>
                 </div>
             </div>
             
@@ -389,90 +397,24 @@
                 <div class="photo-gallery">
                     <!-- 照片1 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="开幕式现场">
                         <div class="photo-caption">开幕式现场</div>
                     </div>
                     <!-- 照片2 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="专家分享">
                         <div class="photo-caption">专家分享</div>
                     </div>
                     <!-- 照片3 -->
                     <div class="photo-item">
-                        
+                        <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="行业对话">
                         <div class="photo-caption">行业对话</div>
                     </div>
                 </div>
                 
                 <div class="event-content">
                     <p class="event-description">作为主办方，我们成功举办了年度行业技术峰会，汇集了国内外顶尖专家，探讨了行业未来发展趋势，推动了技术创新。峰会吸引了超过1000名专业人士参与。</p>
-                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- 事件5：公司年度庆典 -->
-            <div class="event-card">
-                <div class="event-header">
-                    <div class="event-date">
-                        <i class="far fa-calendar-alt"></i> 2023年12月20日
-                    </div>
-                    <h3 class="event-title">公司年度庆典</h3>
-                </div>
-                
-                <div class="photo-gallery">
-                    <!-- 照片1 -->
-                    <div class="photo-item">
-                        
-                        <div class="photo-caption">庆典主会场</div>
-                    </div>
-                    <!-- 照片2 -->
-                    <div class="photo-item">
-                        
-                        <div class="photo-caption">优秀员工表彰</div>
-                    </div>
-                    <!-- 照片3 -->
-                    <div class="photo-item">
-                        
-                        <div class="photo-caption">文艺表演</div>
-                    </div>
-                </div>
-                
-                <div class="event-content">
-                    <p class="event-description">在豪华酒店举办了盛大的年度庆典，表彰了优秀员工，回顾了一年的成就，并展望了未来的发展，增强了员工的归属感。庆典现场气氛热烈，节目精彩纷呈。</p>
-                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- 事件6：全球合作伙伴会议 -->
-            <div class="event-card">
-                <div class="event-header">
-                    <div class="event-date">
-                        <i class="far fa-calendar-alt"></i> 2024年1月15日
-                    </div>
-                    <h3 class="event-title">全球合作伙伴会议</h3>
-                </div>
-                
-                <div class="photo-gallery">
-                    <!-- 照片1 -->
-                    <div class="photo-item">
-                        
-                        <div class="photo-caption">主会场</div>
-                    </div>
-                    <!-- 照片2 -->
-                    <div class="photo-item">
-                        
-                        <div class="photo-caption">合作协议签署</div>
-                    </div>
-                    <!-- 照片3 -->
-                    <div class="photo-item">
-                        
-                        <div class="photo-caption">全体合影</div>
-                    </div>
-                </div>
-                
-                <div class="event-content">
-                    <p class="event-description">我们邀请了来自全球的合作伙伴，共同探讨市场机遇，深化合作关系，制定新一年的合作战略，为未来的发展奠定了基础。会议取得了丰硕成果。</p>
-                    <a href="#" class="read-more">了解更多详情 <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more">了解更多详情</a>
                 </div>
             </div>
         </div>
@@ -481,7 +423,7 @@
     <!-- 页脚 -->
     <div class="footer">
         <div class="container text-center">
-            <p>&copy; 2024 点点滴滴. 保留所有权利.</p>
+            <p>&copy; 2024 初恋日志. 保留所有权利.</p>
         </div>
     </div>
 
@@ -511,5 +453,7 @@
             });
         });
     </script>
+</body>
+</html>
 </body>
 </html>
